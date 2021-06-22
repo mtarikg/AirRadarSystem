@@ -1,27 +1,9 @@
 ﻿namespace SE307_Project
 {
-    public class Unkown_AirCraft:AirCraft
+    public class Unkown_AirCraft : AirCraft
     {
-        public  void move()
+        public Unkown_AirCraft(int id, string type, Country departure, Country destination, double speed, double latitude, double longitude) : base(id, type, departure, destination, speed, latitude, longitude)
         {
-            throw new System.NotImplementedException();
-        }
-
-        private double speed;
-        private Country destination = new Country();
-        private string type;
-        
-
-       
-
-        public Unkown_AirCraft(string type,double speed)
-        {
-            Speed = speed;
-            destination = null;
-            Type = type;
-            CountryName = null;
-            
-
         }
     }
 }

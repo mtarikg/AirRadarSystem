@@ -1,68 +1,32 @@
 ﻿namespace SE307_Project
 {
-    public  class  AirCraft
+    public abstract class AirCraft // declared abstract to prevent creating instances from this class
     {
-        private string type,countryName;
+        private int id;
+        private string type;
+        private Country departure;
+        private Country destination;
         private double speed;
-        private int positionX, positionY;
-        private Country destination = new Country();
+        private double latitude;
+        private double longitude;
 
-        public string Type
+        protected AirCraft(int id, string type, Country departure, Country destination, double speed, double latitude, double longitude)
         {
-            get => type;
-            set => type = value;
-        }
-
-        public string CountryName
-        {
-            get => countryName;
-            set => countryName = value;
-        }
-
-        public double Speed
-        {
-            get => speed;
-            set => speed = value;
-        }
-
-        public int PositionX
-        {
-            get => positionX;
-            set => positionX = value;
-        }
-
-        public int PositionY
-        {
-            get => positionY;
-            set => positionY = value;
-        }
-
-        public Country Destination
-        {
-            get => destination;
-            set => destination = value;
-        }
-
-        public AirCraft(string type, string countryName, double speed, int positionX, int positionY,Country destination)
-        {
+            this.id = id;
             this.type = type;
-            this.countryName = countryName;
-            this.speed = speed;
-            this.positionX = positionX;
-            this.positionY = positionY;
+            this.departure = departure;
             this.destination = destination;
-
+            this.speed = speed;
+            this.latitude = latitude;
+            this.longitude = longitude;
         }
 
-        public AirCraft()
-        {
-        }
-
-        public void move()
-        {
-        }
-
-
-
+        public int Id { get => id; set => id = value; }
+        public string Type { get => type; set => type = value; }
+        public Country Departure { get => departure; set => departure = value; }
+        public Country Destination { get => destination; set => destination = value; }
+        public double Speed { get => speed; set => speed = value; }
+        public double Latitude { get => latitude; set => latitude = value; }
+        public double Longitude { get => longitude; set => longitude = value; }
     }
 }

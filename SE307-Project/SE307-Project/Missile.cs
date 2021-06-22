@@ -1,24 +1,20 @@
 ﻿namespace SE307_Project
 {
-    public class Missile
+    // declared abstract to prevent creating instances from this class, there might be missile types being added later.
+    public abstract class Missile
     {
-        private double speed;
+        private int id;
         private int positionX, positionY;
 
-        public void move()
+        protected Missile(int id, int positionX, int positionY)
         {
-            
-        }
-
-        public Missile(double speed, int positionX, int positionY)
-        {
-            this.speed = speed;
+            this.id = id;
             this.positionX = positionX;
             this.positionY = positionY;
         }
 
-        public Missile()
-        {
-        }
+        public int Id { get => id; set => id = value; }
+        public int PositionX { get => positionX; set => positionX = value; }
+        public int PositionY { get => positionY; set => positionY = value; }
     }
 }

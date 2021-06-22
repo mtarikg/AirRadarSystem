@@ -2,19 +2,16 @@
 {
     public class AirStation
     {
-        private Alert _alert = new Alert();
-        private Missile _missile = new Missile();
-        private Radar _radar = new Radar();
-        private string location;
         private string name;
+        private Radar radar; // an air station must have a radar to observe the airline.
 
-        public AirStation(string location, string name)
+        public AirStation(string name, Radar radar)
         {
-            this.location = location;
             this.name = name;
-       Alert _alert = new Alert();
-         Missile _missile = new Missile();
-         Radar _radar = new Radar();
+            this.radar = radar;
         }
+
+        public string Name { get => name; set => name = value; }
+        public Radar Radar { get => radar; set => radar = value; }
     }
 }
