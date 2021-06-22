@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/AirRadarSystem/v16/.suo
+/SE307-Project/SE307-Project/obj/Release
+/SE307-Project/.vs/SE307-Project/v16
+/.vs
+/SE307-Project/SE307-Project/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/SE307-Project/SE307-Project/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttributes.cs
