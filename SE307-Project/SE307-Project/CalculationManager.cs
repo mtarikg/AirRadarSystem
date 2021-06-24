@@ -2,7 +2,7 @@
 
 namespace SE307_Project
 {
-    public class Manager:IManager
+    public class CalculationManager:ICalculationService
     {
         private double AirCraftMovementDistance;
         private double clashPointX;
@@ -39,7 +39,7 @@ namespace SE307_Project
             get => time;
             set => time = value;
         }
-        public void calcDistance(AirCraft airCraft,Missile missile,MissilesStation missilesStation)
+        public void CalcDistance(AirCraft airCraft,Missile missile,MissilesStation missilesStation)
         {
             MissileDistance = airCraft.YValue / Math.Cos(45);
             clashPointY = airCraft.YValue;
@@ -48,7 +48,7 @@ namespace SE307_Project
             
         }
 
-        public void calcTime(AirCraft airCraft)
+        public void CalcTime(AirCraft airCraft)
         {
             time = AirCraftMovementDistance / airCraft.Speed;
         }

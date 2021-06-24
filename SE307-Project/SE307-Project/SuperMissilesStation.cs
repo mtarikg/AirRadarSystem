@@ -1,49 +1,38 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace SE307_Project
 {
     public class SuperMissilesStation:MissilesStation
     {
-        public override void fireTheMissiles(AirCraft airCraft)
+        public SuperMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
         {
-            superMissiles.MissilesStaus = "The Missiles are fired up towards the AirCraft";
-            Console.WriteLine(superMissiles.MissilesStaus);
-            if (superMissiles.Speed <= airCraft.Speed)
+        }
+
+        public override void fireTheMissiles(Missile superMissile, AirCraft airCraft)
+        {
+            superMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
+            Console.WriteLine(superMissile.MissilesStaus);
+            if (superMissile.Speed <= airCraft.Speed)
             {
-                superMissiles.MissilesStaus =
+                superMissile.MissilesStaus =
                     "The Aircrafts speed is bigger than our Missiles speed so it will not hit the aircraft";
-                Console.WriteLine(superMissiles.MissilesStaus);
-                superMissiles.MissilesStaus = "Our Missile is going to land on clear area";
-                Console.WriteLine(superMissiles);
-                superMissiles.MissilesStaus = "Our Missile is landed is safely";
-                superMissiles.IsHit = false;
+                Console.WriteLine(superMissile.MissilesStaus);
+                superMissile.MissilesStaus = "Our Missile is going to land on clear area";
+                Console.WriteLine(superMissile);
+                superMissile.MissilesStaus = "Our Missile is landed is safely";
+                superMissile.IsHit = false;
             }
-            if (superMissiles.checkTheHittingPercent() == false)
+            if (superMissile.checkTheHittingPercent() == false)
             {
-                superMissiles.IsHit = false;
+                superMissile.IsHit = false;
                 return;
             }
 
-            superMissiles.MissilesStaus =
+            superMissile.MissilesStaus =
                 "The Missile hit the AirCraft successfully and they are dropping in safe area";
-            Console.WriteLine(superMissiles.MissilesStaus);
-            superMissiles.IsHit = true;
-        }
-
-        private SuperMissiles superMissiles = new SuperMissiles();
-
-        public SuperMissiles SuperMissiles
-        {
-            get => superMissiles;
-            set => superMissiles = value;
-        }
-
-        public SuperMissilesStation(int location, string name,SuperMissiles superMissiles) : base(location, name)
-        {
-            this.superMissiles = superMissiles;
-        }
-
-        public SuperMissilesStation()
-        {
+            Console.WriteLine(superMissile.MissilesStaus);
+            superMissile.IsHit = true;
         }
     }
 }

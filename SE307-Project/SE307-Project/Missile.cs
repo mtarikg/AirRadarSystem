@@ -4,6 +4,7 @@
     public abstract class Missile
     {
         private int id;
+        private string type;
         private double speed;
         private string missilesStaus;
         private bool isHit;// to check if the missile hit the the aircraft
@@ -13,7 +14,7 @@
             get => isHit;
             set => isHit = value;
         }
-        
+
 
         public string MissilesStaus
         {
@@ -21,14 +22,11 @@
             set => missilesStaus = value;
         }
 
-        protected Missile(int id, double speed)
+        protected Missile(int id, string type, double speed)
         {
+            this.type = type;
             this.id = id;
             this.speed = speed;
-        }
-
-        protected Missile()
-        {
         }
 
         public int Id { get => id; set => id = value; }
@@ -38,6 +36,7 @@
             get => speed;
             set => speed = value;
         }
+        public string Type { get => type; set => type = value; }
 
         public abstract bool checkTheHittingPercent();// gives a random value depending on a functionality percentage
 

@@ -1,57 +1,42 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SE307_Project
 {
     public class LightMissilesStation:MissilesStation
     {
-        public override void fireTheMissiles(AirCraft airCraft)
+        public LightMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
         {
-            lightMissiles.MissilesStaus = "The Missiles are fired up towards the AirCraft";
-            Console.WriteLine(lightMissiles.MissilesStaus);
-            if (lightMissiles.Speed <= airCraft.Speed)
+        }
+
+        public override void fireTheMissiles(Missile lightMissile, AirCraft airCraft)
+        {
+            lightMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
+            Console.WriteLine(lightMissile.MissilesStaus);
+            if (lightMissile.Speed <= airCraft.Speed)
             {
-                lightMissiles.MissilesStaus =
+                lightMissile.MissilesStaus =
                     "The Aircrafts speed is bigger than our Missiles speed so it will not hit the aircraft";
-                Console.WriteLine(lightMissiles.MissilesStaus);
-                lightMissiles.MissilesStaus = "Our Missile is going to land on clear area";
-                Console.WriteLine(lightMissiles);
-                lightMissiles.MissilesStaus = "Our Missile is landed is safely";
-                lightMissiles.IsHit = false;
+                Console.WriteLine(lightMissile.MissilesStaus);
+                lightMissile.MissilesStaus = "Our Missile is going to land on clear area";
+                Console.WriteLine(lightMissile);
+                lightMissile.MissilesStaus = "Our Missile is landed is safely";
+                lightMissile.IsHit = false;
                 return;
             }
 
-            if (lightMissiles.checkTheHittingPercent() == false)
+            if (lightMissile.checkTheHittingPercent() == false)
             {
-                lightMissiles.IsHit = false;
+                lightMissile.IsHit = false;
                 return;
             }
 
-            lightMissiles.MissilesStaus =
+            lightMissile.MissilesStaus =
                 "The Missile hit the AirCraft successfully and they are dropping in safe area";
-            Console.WriteLine(lightMissiles.MissilesStaus);
-            lightMissiles.IsHit = true;
+            Console.WriteLine(lightMissile.MissilesStaus);
+            lightMissile.IsHit = true;
             
 
         }
-        
-
-        private LightMissiles lightMissiles = new LightMissiles();
-
-        public LightMissilesStation(int location, string name,LightMissiles lightMissiles) : base(location, name)
-        {
-            this.lightMissiles = lightMissiles;
-        }
-
-        public LightMissilesStation()
-        {
-        }
-
-        public LightMissiles LightMissiles
-        {
-            get => lightMissiles;
-            set => lightMissiles = value;
-        }
-
-       
     }
 }

@@ -4,13 +4,13 @@
     {
         private int id;
         private string type;
-        private Country departure;
-        private Country destination;
+        private string departure;
+        private string destination;
         private double speed;
         private double xValue;
         private double yValue;
 
-        protected AirCraft(int id, string type, Country departure, Country destination, double speed, double X, double Y)
+        protected AirCraft(int id, string type, string departure, string destination, double speed, double X, double Y)
         {
             this.id = id;
             this.type = type;
@@ -23,8 +23,8 @@
 
         public int Id { get => id; set => id = value; }
         public string Type { get => type; set => type = value; }
-        public Country Departure { get => departure; set => departure = value; }
-        public Country Destination { get => destination; set => destination = value; }
+        public string Departure { get => departure; set => departure = value; }
+        public string Destination { get => destination; set => destination = value; }
         public double Speed { get => speed; set => speed = value; }
 
         public double XValue
@@ -38,6 +38,6 @@
             get => yValue;
             set => yValue = value;
         }
-        
+
     }
 }

@@ -79,7 +79,7 @@ namespace SE307_Project
             Console.WriteLine("This File does not exist to be deleted");
             }
 
-        public bool isEnemyChecker(AirCraft airCraft, List<Country> alliesCountries)
+        public bool isEnemyChecker(AirCraft airCraft, List<string> alliesCountries)
         {
             if (alliesCountries.Contains(airCraft.Departure))
             {
