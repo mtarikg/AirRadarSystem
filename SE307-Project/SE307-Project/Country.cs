@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SE307_Project
 {
@@ -6,13 +7,15 @@ namespace SE307_Project
     {
         private int id;
         private string countryName;
-        private double population;
-        private double area;
+        private string population;
+        private string area;
         private AirStation airStation; // a country must have an air station.
         private List<AirCraft> aircrafts; // a country can have multiple aircrafts.
         private List<Missile> missiles; // a country can have multiple missiles.
+        private List<Country> alliesCountries; // a country can have multiple allies.
+        private List<Country> enemyCountries; // a country can have multiple enemies.
 
-        public Country(int id, string countryName, double population, double area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles)
+        public Country(int id, string countryName, string population, string area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles, List<Country> alliesCountries, List<Country> enemyCountries)
         {
             this.id = id;
             this.countryName = countryName;
@@ -21,14 +24,28 @@ namespace SE307_Project
             this.airStation = airStation;
             this.aircrafts = aircrafts;
             this.missiles = missiles;
+            this.alliesCountries = alliesCountries;
+            this.enemyCountries = enemyCountries;
         }
 
         public int Id { get => id; set => id = value; }
         public string CountryName { get => countryName; set => countryName = value; }
-        public double Population { get => population; set => population = value; }
-        public double Area { get => area; set => area = value; }
+        public string Population { get => population; set => population = value; }
+        public string Area { get => area; set => area = value; }
         public AirStation AirStation { get => airStation; set => airStation = value; }
         public List<AirCraft> Aircrafts { get => aircrafts; set => aircrafts = value; }
         public List<Missile> Missiles { get => missiles; set => missiles = value; }
+
+        public List<Country> AlliesCountries
+        {
+            get => alliesCountries;
+            set => alliesCountries = value;
+        }
+
+        public List<Country> EnemyCountries
+        {
+            get => enemyCountries;
+            set => enemyCountries = value;
+        }
     }
 }

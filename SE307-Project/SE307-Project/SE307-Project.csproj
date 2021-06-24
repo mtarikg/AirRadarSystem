@@ -39,15 +39,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirCraft.cs" />
+    <Compile Include="AircraftManager.cs" />
     <Compile Include="AirStation.cs" />
     <Compile Include="Alert.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="CountryManager.cs" />
     <Compile Include="F.O.E_AirCraft.cs" />
     <Compile Include="Friend_AirCraft.cs" />
+    <Compile Include="IOperationService.cs" />
+    <Compile Include="IDataService.cs" />
+    <Compile Include="ICalculationService.cs" />
+    <Compile Include="LightMissiles.cs" />
+    <Compile Include="LightMissilesStation.cs" />
+    <Compile Include="CalculationManager.cs" />
     <Compile Include="Missile.cs" />
+    <Compile Include="MissileManager.cs" />
+    <Compile Include="MissilesStation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radar.cs" />
+    <Compile Include="SuperMissiles.cs" />
+    <Compile Include="SuperMissilesStation.cs" />
     <Compile Include="Unkown_AirCraft.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

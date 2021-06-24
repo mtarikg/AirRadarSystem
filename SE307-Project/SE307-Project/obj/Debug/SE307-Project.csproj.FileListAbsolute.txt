@@ -1,0 +1,6 @@
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\obj\Debug\SE307-Project.csproj.AssemblyReference.cache
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\obj\Debug\SE307-Project.csproj.CoreCompileInputs.cache
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\bin\Debug\SE307_Project.exe
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\bin\Debug\SE307_Project.pdb
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\obj\Debug\SE307_Project.exe
+C:\Users\mtari\Documents\Projects\VisualStudio Projects\AirRadarSystem\SE307-Project\SE307-Project\obj\Debug\SE307_Project.pdb
