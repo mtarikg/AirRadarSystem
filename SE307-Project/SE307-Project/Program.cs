@@ -14,10 +14,10 @@ namespace SE307_Project
             Console.WriteLine("4- Modify The Enemies For The Country");
             Console.WriteLine("5- Open Logs File");
             Console.WriteLine("6- Simulate a Scenario");
-            Console.WriteLine("7- Terminate The Program");
+            Console.WriteLine("7- Display All The Data And Terminate The Program ");
         }
 
-        public static void  ScenarioMenu()
+        public static void ScenarioMenu()
         {
             Console.WriteLine("Please Choose The Scenario That You Want to Process");
             Console.WriteLine("1- Friend AirCraft is Entering The Lands of Turkey");
@@ -35,6 +35,7 @@ namespace SE307_Project
             Console.WriteLine("3- Delete And Create New Logs File");
             Console.WriteLine("4- Go Back");
         }
+
         public static void Main(string[] args)
         {
 
@@ -46,24 +47,33 @@ namespace SE307_Project
             MissileManager missileManager = new MissileManager();
             AirCraft UnkownAirCraft = new Unkown_AirCraft(3, "F-15", null, null, 500, 13, 9); //towards Turkey
             AirCraft foeAirCraft = new F_O_E_AirCraft(4, "F-20", "China", "Syria", 400, 13, 9);
-            AirCraft enemyAirCraft = new EnemyAirCraft(5,"SP-20","U.S.A","Turkey",450,13,9);
+            AirCraft enemyAirCraft = new EnemyAirCraft(5, "SP-20", "U.S.A", "Turkey", 450, 13, 9);
             AirCraft friendAirCraft = new Friend_AirCraft(6, "SC-30", "Qatar", "Germany", 350, 13, 9);
-            LightMissiles lightMissilesEnemyScene = new LightMissiles(3221,400,"Light Rockets",8);
-            SuperMissiles superMissilesEnemyScene = new SuperMissiles(1223,500,"Super Rockets",9);
-            LightMissiles lightMissilesUnkownScene = new LightMissiles(4545,550,"Light Rockets",8);
-            SuperMissiles superMissilesUnkownScene = new SuperMissiles(5454,700,"Super Rockets",9);
-            LightMissiles lightMissilesF_O_EScene = new LightMissiles(7878,200,"Light Rockets",8);
-            SuperMissiles superMissilesF_O_EScene = new SuperMissiles(8787,300,"Super Rockets",9);
+            LightMissiles lightMissilesEnemyScene = new LightMissiles(3221, 400, "Light Rockets", 8);
+            SuperMissiles superMissilesEnemyScene = new SuperMissiles(1223, 500, "Super Rockets", 9);
+            LightMissiles lightMissilesUnkownScene = new LightMissiles(4545, 550, "Light Rockets", 8);
+            SuperMissiles superMissilesUnkownScene = new SuperMissiles(5454, 700, "Super Rockets", 9);
+            LightMissiles lightMissilesF_O_EScene = new LightMissiles(7878, 200, "Light Rockets", 8);
+            SuperMissiles superMissilesF_O_EScene = new SuperMissiles(8787, 300, "Super Rockets", 9);
             CalculationManager calculationManager = new CalculationManager();
-           
+            int numberOfAirCrafts = 0;
+            int numberOfEnemyAirCrafts=0;
+            int numberOfFOEAirCrafts = 0;
+            int numberOfUnkownAirCrafts = 0;
+            int numberOfFriendAirCrafts = 0;
+            List<AirCraft> enemyAirCrafts = new List<AirCraft>();
+            List<AirCraft> friendAirCrafts = new List<AirCraft>();
+            List<AirCraft> unkownAirCrafts = new List<AirCraft>();
+            List<AirCraft> fOEAirCrafts = new List<AirCraft>();
+
             Country country1 = new Country(1, "Turkey", "85 million", "783.562 km2", airStationTurkey,
                 new List<AirCraft> { },
                 new List<Missile> { }, new List<Country> { }, new List<Country> { }, new LightMissilesStation(),
                 new SuperMissilesStation());
             while (true)
             {
-               MainMenu();
-                int operationChoice=Int32.Parse(Console.ReadLine());
+                MainMenu();
+                int operationChoice = Int32.Parse(Console.ReadLine());
                 if (operationChoice <= 0 || operationChoice > 7)
                 {
                     Console.WriteLine("You Have chosen invalid Operation please choose valid choice");
@@ -73,12 +83,12 @@ namespace SE307_Project
                 switch (operationChoice)
                 {
                     case 1:
-                        case 2:
-                        case 3:
-                        case 4:
+                    case 2:
+                    case 3:
+                    case 4:
                         aircraftManager.ShowData(aircraft2);
                         aircraftManager.Add(aircraft2, country1);
-                        
+
                         CountryManager countryManager = new CountryManager(aircraftManager, missileManager);
                         countryManager.ShowData(country1);
 
@@ -90,7 +100,7 @@ namespace SE307_Project
                         break;
                     case 5:
                         LogOptions();
-                        int logsChoice=Int32.Parse(Console.ReadLine());
+                        int logsChoice = Int32.Parse(Console.ReadLine());
                         if (logsChoice <= 0 || logsChoice > 4)
                         {
                             Console.WriteLine("Please Enter Valid Logs Option");
@@ -102,31 +112,31 @@ namespace SE307_Project
                             case 1:
                                 Console.WriteLine("Reading Part is on Process");
                                 country1.AirStation.Radar.ReadLogs();
-                                    break;
-                                case 2:
-                                    country1.AirStation.Radar.deleteLog();
-                                    Console.WriteLine("The Log is Deleted");
-                                    break;
-                                case 3:
-                                    country1.AirStation.Radar.deleteLog();
-                                    Console.WriteLine("The log is deleted");
-                                    country1.AirStation.Radar.createNewLog();
-                                    Console.WriteLine("New log is created");
-                                    break;
-                                case 4:
-                                    break;
-                                
+                                break;
+                            case 2:
+                                country1.AirStation.Radar.deleteLog();
+                                Console.WriteLine("The Log is Deleted");
+                                break;
+                            case 3:
+                                country1.AirStation.Radar.deleteLog();
+                                Console.WriteLine("The log is deleted");
+                                country1.AirStation.Radar.createNewLog();
+                                Console.WriteLine("New log is created");
+                                break;
+                            case 4:
+                                break;
+
                         }
 
                         ;
                         break;
-                    
-                    
+
+
                     case 6:
                         while (true)
                         {
                             ScenarioMenu();
-                            int scenarioChoice=Int32.Parse(Console.ReadLine());
+                            int scenarioChoice = Int32.Parse(Console.ReadLine());
                             if (scenarioChoice <= 0 || scenarioChoice > 5)
                             {
                                 Console.WriteLine("Please Enter a Valid Scenario");
@@ -136,32 +146,40 @@ namespace SE307_Project
                             switch (scenarioChoice)
                             {
                                 case 1:
+                                    numberOfFriendAirCrafts++;
+                                    friendAirCrafts.Add(friendAirCraft);
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
                                     Console.WriteLine("Here is its Details: ");
-                                   aircraftManager.ShowData(friendAirCraft);
+                                    aircraftManager.ShowData(friendAirCraft);
                                     Console.WriteLine("It is found that is a Friend AirCraft");
                                     country1.AirStation.Radar.saveIntoLogs(friendAirCraft);
-                                    
+                                    numberOfAirCrafts++;
+
                                     break;
                                 case 2:
+                                    numberOfAirCrafts++;
+                                    numberOfEnemyAirCrafts++;
+                                    enemyAirCrafts.Add(enemyAirCraft);
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
                                     country1.AirStation.Radar.saveIntoLogs(enemyAirCraft);
-                                   Console.WriteLine( country1.AirStation.Alert.lowRiskMessaage());
+                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(enemyAirCraft);
                                     Console.WriteLine("It is show that this is Aircraft for enemies");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesEnemyScene,enemyAirCraft);
+                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesEnemyScene,
+                                        enemyAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
                                         Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesEnemyScene,enemyAirCraft);
+                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesEnemyScene,
+                                            enemyAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == true)
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
@@ -169,6 +187,7 @@ namespace SE307_Project
                                             calculationManager.AirCraftT = enemyAirCraft;
                                             calculationManager.methodsContainer();
                                         }
+
                                         break;
                                     }
 
@@ -178,25 +197,29 @@ namespace SE307_Project
                                     calculationManager.methodsContainer();
                                     break;
                                 case 3:
-                                    Console.WriteLine( country1.AirStation.Alert.lowRiskMessaage());
+                                    numberOfAirCrafts++;
+                                    numberOfFOEAirCrafts++;
+                                    fOEAirCrafts.Add(foeAirCraft);
+                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
                                     country1.AirStation.Radar.saveIntoLogs(foeAirCraft);
-                                    
+
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(foeAirCraft);
                                     Console.WriteLine("It is show that this is Aircraft for friend of an enemy");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesF_O_EScene,foeAirCraft);
+                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesF_O_EScene, foeAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
                                         Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesF_O_EScene,foeAirCraft);
+                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesF_O_EScene,
+                                            foeAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == true)
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
@@ -204,6 +227,7 @@ namespace SE307_Project
                                             calculationManager.AirCraftT = foeAirCraft;
                                             calculationManager.methodsContainer();
                                         }
+
                                         break;
                                     }
 
@@ -213,7 +237,10 @@ namespace SE307_Project
                                     calculationManager.methodsContainer();
                                     break;
                                 case 4:
-                                    Console.WriteLine( country1.AirStation.Alert.lowRiskMessaage());
+                                    numberOfAirCrafts++;
+                                    numberOfUnkownAirCrafts++;
+                                    unkownAirCrafts.Add(UnkownAirCraft);
+                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
@@ -223,14 +250,16 @@ namespace SE307_Project
                                     Console.WriteLine("It is show that this is Aircraft for enemies");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesUnkownScene,UnkownAirCraft);
+                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesUnkownScene,
+                                        UnkownAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
                                         Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesUnkownScene,UnkownAirCraft);
+                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesUnkownScene,
+                                            UnkownAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == true)
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
@@ -238,6 +267,7 @@ namespace SE307_Project
                                             calculationManager.AirCraftT = UnkownAirCraft;
                                             calculationManager.methodsContainer();
                                         }
+
                                         break;
                                     }
 
@@ -247,19 +277,106 @@ namespace SE307_Project
                                     calculationManager.methodsContainer();
                                     break;
                                 case 5:
-                                    Console.WriteLine("Going Back :)");
-                                        break;
+                                   Console.WriteLine("Going Back :)");
+                                    break;
                             }
+
                             break;
                         }
-                        
+
                         break;
 
-                        case 7:
-                            Console.WriteLine("Good Bye :)");
-                            return;
+                    case 7:
+                         Console.WriteLine("Data Demo");
+                                    Console.WriteLine("We Have " + numberOfAirCrafts + " AirCraft in this simulation");
+                                    Console.WriteLine("......\n......\n......");
+                                    Console.WriteLine("Friend AirCraft Data Demo");
+                                    int Counter = 1;
+                                    if (friendAirCrafts.Count != 0)
+                                    {
+                                        Console.WriteLine("Friend Air Crafts repeated: "+numberOfFriendAirCrafts);
+                                        foreach (var FAR in friendAirCrafts)
+                                        {
+                                            Console.WriteLine("Friend AirCraft Number "+Counter+" Data");
+                                            aircraftManager.ShowData(FAR);
+                                            Console.WriteLine("The Air Craft is moving from "+FAR.Departure+" to "+FAR.Destination);
+                                            Counter++;
+
+                                        }
+                                        
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("We Did not implement any friend air crafts in the simulation");
+
+                                    }
+                                    Console.WriteLine("......\n......\n......");
+                                    Counter = 1;
+                                    if (enemyAirCrafts.Count != 0)
+                                    {
+                                        Console.WriteLine("Enemy Air Crafts repeated: "+numberOfEnemyAirCrafts);
+                                        foreach (var EAR in enemyAirCrafts)
+                                        {
+                                            Console.WriteLine("Enemy AirCraft Number "+Counter+" Data");
+                                            aircraftManager.ShowData(EAR);
+                                            Console.WriteLine("The Air Craft is moving from "+EAR.Departure+" to "+EAR.Destination);
+                                            Counter++;
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("We Did not implement any enemies air crafts in the simulation");
+
+                                    }
+                                    Console.WriteLine("......\n......\n......");
+                                    Console.WriteLine("FOE AirCrafts Data Demo");
+                                    Counter = 1;
+                                    if (fOEAirCrafts.Count != 0)
+                                    {
+                                        Console.WriteLine("FOE Air Crafts repeated: "+numberOfFOEAirCrafts);
+                                        foreach (var FOE in fOEAirCrafts)
+                                        {
+                                            Console.WriteLine("FOE AirCraft Number "+Counter+" Data");
+                                            aircraftManager.ShowData(FOE);
+                                            Console.WriteLine("The Air Craft is moving from "+FOE.Departure+" to "+FOE.Destination);
+                                            Counter++;
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("We Did not implement any F.O.E air crafts in the simulation");
+
+                                    }
+                                    Console.WriteLine("Unkown AirCrafts Data Demo");
+                                    Console.WriteLine("......\n......\n......");
+                                    Counter = 1;
+                                    if (unkownAirCrafts.Count != 0)
+                                    {
+                                        Console.WriteLine("Unkown AirCrafts Data Demo");
+                                        Console.WriteLine("Friend Unkown Crafts repeated: "+numberOfUnkownAirCrafts);
+                                        foreach (var UNK in friendAirCrafts)
+                                        {
+                                            Console.WriteLine("Unkown AirCraft Number "+Counter+" Data");
+                                            aircraftManager.ShowData(UNK);
+                                           
+                                            Counter++;
+
+                                        }
+                                        Console.WriteLine("Departure And Destination Countries are Unkown for the Unkown AirCrafts ");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("We Did not implement any unkown air crafts in the simulation");
+
+                                    }
+                                    Console.WriteLine("......\n......\n......\n......\n......\n.....\n");
+                                    Console.WriteLine("Bye Bye :)");
+                                    return;
+                        
                 }
-                
+
 
 
 
