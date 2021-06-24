@@ -32,5 +32,9 @@ namespace SE307_Project
             this.name = name;
             this.missiles = missiles;
         }
+
+        protected MissilesStation()
+        {
+        }
     }
 }

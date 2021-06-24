@@ -1,4 +1,6 @@
-﻿namespace SE307_Project
+﻿using System;
+
+namespace SE307_Project
 {
     public class SuperMissiles:Missile
     {
@@ -17,7 +19,14 @@
 
          public override bool checkTheHittingPercent()
         {
-            throw new System.NotImplementedException();
+            Random rand = new Random();
+            int randomPercent = rand.Next(1,99);
+            if (randomPercent > 80)
+            {
+                return false;
+            }
+
+            return true;
         } 
          
     }

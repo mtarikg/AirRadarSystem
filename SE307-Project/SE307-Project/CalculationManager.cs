@@ -9,6 +9,28 @@ namespace SE307_Project
         private double clashPointY;
         private double MissileDistance;
         private double time;
+        private AirCraft airCraft;
+        private Missile missile;
+        private MissilesStation missilesStation;
+
+        public MissilesStation MissilesStation
+        {
+            get => missilesStation;
+            set => missilesStation = value;
+        }
+
+        public AirCraft AirCraftT
+        {
+            get => airCraft;
+            set => airCraft = value;
+        }
+
+        public Missile MissileT
+        {
+            get => missile;
+            set => missile = value;
+        }
+        
 
         public double AirCraftMovementDistance1
         {
@@ -39,7 +61,7 @@ namespace SE307_Project
             get => time;
             set => time = value;
         }
-        public void CalcDistance(AirCraft airCraft,Missile missile,MissilesStation missilesStation)
+        public void CalcDistance()
         {
             MissileDistance = airCraft.YValue / Math.Cos(45);
             clashPointY = airCraft.YValue;
@@ -48,9 +70,26 @@ namespace SE307_Project
             
         }
 
-        public void CalcTime(AirCraft airCraft)
+        public void CalcTime()
         {
             time = AirCraftMovementDistance / airCraft.Speed;
+        }
+
+        public void DisplayTheClash()
+        {
+            Console.WriteLine("Clash Info: ");
+            Console.WriteLine("The Clash Happened Between The AirCraft and The Missile in ");
+            Console.WriteLine("("+clashPointX+" , "+ClashPointY+")" +" Point ");
+            Console.WriteLine("The AirCraft has moved  "+AirCraftMovementDistance+" KM In The Country Borders");
+            Console.WriteLine("The Missile Moved "+MissileDistance+" KM in the Country Borders");
+            Console.WriteLine("The Clash Happened After "+time+" hours after the aircraft entered the borders ");
+        }
+
+        public void methodsContainer()
+        {
+            CalcDistance();
+            CalcTime();
+            DisplayTheClash();
         }
     }
 }

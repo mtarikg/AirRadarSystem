@@ -7,6 +7,6 @@ namespace SE307_Project
 {
     public interface IDataService<T>
     {
-        void ShowData(T item);
+        string ShowData(T item);
     }
 }

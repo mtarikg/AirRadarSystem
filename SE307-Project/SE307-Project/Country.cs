@@ -13,9 +13,11 @@ namespace SE307_Project
         private List<AirCraft> aircrafts; // a country can have multiple aircrafts.
         private List<Missile> missiles; // a country can have multiple missiles.
         private List<Country> alliesCountries; // a country can have multiple allies.
-        private List<Country> enemyCountries; // a country can have multiple enemies.
+        private List<Country> enemyCountries;  // a country can have multiple enemies.
+        private LightMissilesStation lightMissilesStation = new LightMissilesStation();
+        private SuperMissilesStation superMissilesStation = new SuperMissilesStation();
 
-        public Country(int id, string countryName, string population, string area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles, List<Country> alliesCountries, List<Country> enemyCountries)
+        public Country(int id, string countryName, string population, string area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles, List<Country> alliesCountries, List<Country> enemyCountries,LightMissilesStation lightMissilesStation,SuperMissilesStation superMissilesStation)
         {
             this.id = id;
             this.countryName = countryName;
@@ -26,6 +28,8 @@ namespace SE307_Project
             this.missiles = missiles;
             this.alliesCountries = alliesCountries;
             this.enemyCountries = enemyCountries;
+            this.lightMissilesStation = lightMissilesStation;
+            this.superMissilesStation = superMissilesStation;
         }
 
         public int Id { get => id; set => id = value; }
@@ -46,6 +50,18 @@ namespace SE307_Project
         {
             get => enemyCountries;
             set => enemyCountries = value;
+        }
+
+        public LightMissilesStation LightMissilesStation
+        {
+            get => lightMissilesStation;
+            set => lightMissilesStation = value;
+        }
+
+        public SuperMissilesStation SuperMissilesStation
+        {
+            get => superMissilesStation;
+            set => superMissilesStation = value;
         }
     }
 }

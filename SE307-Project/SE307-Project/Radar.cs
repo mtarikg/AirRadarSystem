@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace SE307_Project
 {
@@ -8,7 +9,21 @@ namespace SE307_Project
     {
         private double highRiskRadius, lowRiskRadius;
         private bool isThereRisk;
-        private string file = @"E:\SE307\AirRadarSystem\SE307-Project\SE307-Project\radarLog.txt";
+        private string file = @"E:\radarLog.txt";
+        private AircraftManager aircraftManager = new AircraftManager();
+        List<string> lines = new List<string>();
+
+        public double HighRiskRadius
+        {
+            get => highRiskRadius;
+            set => highRiskRadius = value;
+        }
+
+        public double LowRiskRadius
+        {
+            get => lowRiskRadius;
+            set => lowRiskRadius = value;
+        }
 
         public Radar(double highRiskRadius, double lowRiskRadius)
         {
@@ -20,15 +35,14 @@ namespace SE307_Project
         {
             if (logsChecker() == true)
             {
-                using (StreamWriter streamWriter = File.CreateText(file))
-                {
-                    streamWriter.WriteLine(airCraft.ToString());
-                }
-                return;
+               lines.Add(aircraftManager.ShowData(airCraft));
+               File.WriteAllLines(file,lines);
+               
             }
             else
             {
-                Console.WriteLine("This File does not exist please create one");
+                createNewLog();
+                saveIntoLogs(airCraft);
             }
             
            
@@ -36,15 +50,13 @@ namespace SE307_Project
 
         public void ReadLogs()
         {
+            logsChecker();
             if (logsChecker() == true)
             {
-                using (StreamReader streamReader = File.OpenText(file))
+                lines = File.ReadAllLines(file).ToList();
+                foreach (var VARIABLE in lines)
                 {
-                    string s = "";
-                    while ((s = streamReader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(s);
-                    }
+                    Console.WriteLine(VARIABLE);
                 }
             }
             else
@@ -55,8 +67,11 @@ namespace SE307_Project
 
         public void createNewLog()
         {
-            if(logsChecker()==false)
-            File.CreateText(file);
+            if (logsChecker() == false)
+            {
+                using (FileStream fs = File.Create(file)) ;
+            }
+            
             else
             Console.WriteLine("This File is already exist");
             }
@@ -91,8 +106,8 @@ namespace SE307_Project
             isThereRisk = true;
             return true;
         }
-        
-        
+
+      
 
         public Radar()
         {

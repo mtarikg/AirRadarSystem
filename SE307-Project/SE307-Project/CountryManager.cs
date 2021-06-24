@@ -47,7 +47,7 @@ namespace SE307_Project
             }
         }
 
-        public void ShowData(Country country)
+        public string ShowData(Country country)
         {
             Console.WriteLine("Here is all information of the country: ");
             Console.WriteLine("Country name: " + country.CountryName);
@@ -107,6 +107,7 @@ namespace SE307_Project
                 Console.WriteLine(country.CountryName + " has no enemy country at the moment.");
             }
             Console.WriteLine();
+            return null;
         }
     }
 }

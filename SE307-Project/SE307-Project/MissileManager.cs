@@ -38,11 +38,13 @@ namespace SE307_Project
             }
         }
 
-        public void ShowData(Missile missile)
+        public string ShowData(Missile missile)
         {
             Console.WriteLine("Missile type: " + missile.Type);
             Console.WriteLine("Missile speed: " + missile.Speed);
             Console.WriteLine("Missile status: " + missile.MissilesStaus);
+            return "Missile type: " + missile.Type + "\n" + "Missile speed: " + missile.Speed + "\n" +
+                   "Missile status: " + missile.MissilesStaus;
         }
     }
 }

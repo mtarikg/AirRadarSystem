@@ -38,12 +38,15 @@ namespace SE307_Project
             }
         }
 
-        public void ShowData(AirCraft aircraft)
+        public string ShowData(AirCraft aircraft)
         {
+            
             Console.WriteLine("Here is the information of the aircraft: ");
             Console.WriteLine("Aircraft type: " + aircraft.Type);
             Console.WriteLine("Aircraft speed: " + aircraft.Speed);
             Console.WriteLine();
+            return "Here is the information of the aircraft: " + "\n " + "Aircraft type: " + aircraft.Type + "\n" +
+                   "Aircraft speed: " + aircraft.Speed;
         }
     }
 }

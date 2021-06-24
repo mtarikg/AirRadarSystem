@@ -1,4 +1,7 @@
-﻿namespace SE307_Project
+﻿using System;
+using System.Security.Cryptography;
+
+namespace SE307_Project
 {
     public class LightMissiles : Missile
     {
@@ -16,7 +19,15 @@
         }
         public override bool checkTheHittingPercent()
         {
-            throw new System.NotImplementedException();
+            Random rand = new Random();
+            int randomPercent = rand.Next(1,99);
+            if (randomPercent > 50)
+            {
+                return false;
+            }
+
+            return true;
+            
         }
     }
 }
