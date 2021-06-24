@@ -18,7 +18,7 @@ namespace SE307_Project
             set => isHitStatus = value;
         }
 
-        public override void fireTheMissiles(Missile superMissile, AirCraft airCraft)
+        public override bool fireTheMissiles(Missile superMissile, AirCraft airCraft)
         {
             superMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(superMissile.MissilesStaus);
@@ -30,7 +30,8 @@ namespace SE307_Project
                 superMissile.MissilesStaus = "Our Missile is going to land on clear area";
                 superMissile.MissilesStaus = "Our Missile is landed is safely";
                 superMissile.IsHit = false;
-                isHitStatus = false;
+                IsHitStatus = false;
+                return false;
             }
             if (superMissile.checkTheHittingPercent() == false)
             {
@@ -40,10 +41,9 @@ namespace SE307_Project
                 Console.WriteLine(superMissile.MissilesStaus);
                 superMissile.MissilesStaus = "The Missile is going to land on safe area";
                 Console.WriteLine(superMissile.MissilesStaus);
-                Console.WriteLine(superMissile);
                 superMissile.MissilesStaus = "Our Missile is landed is safely";
-                isHitStatus = false;
-                return;
+                IsHitStatus = false;
+                return false;
             }
 
             superMissile.MissilesStaus =
@@ -51,6 +51,7 @@ namespace SE307_Project
             Console.WriteLine(superMissile.MissilesStaus);
             superMissile.IsHit = true;
             isHitStatus = true;
+            return true;
         }
 
         public SuperMissilesStation()

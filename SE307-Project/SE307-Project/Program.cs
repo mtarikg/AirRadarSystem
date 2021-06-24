@@ -61,10 +61,14 @@ namespace SE307_Project
             int numberOfFOEAirCrafts = 0;
             int numberOfUnkownAirCrafts = 0;
             int numberOfFriendAirCrafts = 0;
+            int counterDestroyedAirCrafts = 0;
+            int counterPassedAirCrafts = 0;
             List<AirCraft> enemyAirCrafts = new List<AirCraft>();
             List<AirCraft> friendAirCrafts = new List<AirCraft>();
             List<AirCraft> unkownAirCrafts = new List<AirCraft>();
             List<AirCraft> fOEAirCrafts = new List<AirCraft>();
+            List<AirCraft> destroyedAirCrafts = new List<AirCraft>();
+            List<AirCraft> passedAirCrafts = new List<AirCraft>();
 
             Country country1 = new Country(1, "Turkey", "85 million", "783.562 km2", airStationTurkey,
                 new List<AirCraft> { },
@@ -154,6 +158,7 @@ namespace SE307_Project
                                     Console.WriteLine("It is found that is a Friend AirCraft");
                                     country1.AirStation.Radar.saveIntoLogs(friendAirCraft);
                                     numberOfAirCrafts++;
+                                    
 
                                     break;
                                 case 2:
@@ -167,7 +172,7 @@ namespace SE307_Project
                                     Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(enemyAirCraft);
-                                    Console.WriteLine("It is show that this is Aircraft for enemies");
+                                    Console.WriteLine("It is shown that this is Aircraft for enemies");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
                                     country1.LightMissilesStation.fireTheMissiles(lightMissilesEnemyScene,
@@ -180,21 +185,35 @@ namespace SE307_Project
                                         Console.WriteLine("Super Missiles are ready to be fired ");
                                         country1.SuperMissilesStation.fireTheMissiles(superMissilesEnemyScene,
                                             enemyAirCraft);
-                                        if (country1.SuperMissilesStation.IsHitStatus == true)
+                                        if (country1.SuperMissilesStation.IsHitStatus == false)
+                                        {
+                                            passedAirCrafts.Add(enemyAirCraft);
+                                        }
+                                        else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
                                             calculationManager.MissileT = superMissilesEnemyScene;
                                             calculationManager.AirCraftT = enemyAirCraft;
                                             calculationManager.methodsContainer();
+                                            destroyedAirCrafts.Add(enemyAirCraft);
+                                            
                                         }
 
                                         break;
                                     }
 
+                                    if (country1.LightMissilesStation.IsHitStatus==false)
+                                    {
+
+                                        passedAirCrafts.Add(enemyAirCraft);
+                                        Console.WriteLine("The AirCraft has escaped");
+                                        break;
+                                    }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
                                     calculationManager.MissileT = lightMissilesEnemyScene;
                                     calculationManager.AirCraftT = enemyAirCraft;
                                     calculationManager.methodsContainer();
+                                    destroyedAirCrafts.Add(enemyAirCraft);
                                     break;
                                 case 3:
                                     numberOfAirCrafts++;
@@ -220,20 +239,34 @@ namespace SE307_Project
                                         Console.WriteLine("Super Missiles are ready to be fired ");
                                         country1.SuperMissilesStation.fireTheMissiles(superMissilesF_O_EScene,
                                             foeAirCraft);
-                                        if (country1.SuperMissilesStation.IsHitStatus == true)
+                                        if (country1.SuperMissilesStation.IsHitStatus == false)
+                                        {
+                                            Console.WriteLine("The AirCraft has escaped");
+                                            passedAirCrafts.Add(foeAirCraft);
+                                        }
+                                        else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
                                             calculationManager.MissileT = superMissilesF_O_EScene;
                                             calculationManager.AirCraftT = foeAirCraft;
                                             calculationManager.methodsContainer();
+                                            destroyedAirCrafts.Add(foeAirCraft);
+                                            passedAirCrafts.Add(foeAirCraft);
                                         }
 
                                         break;
                                     }
 
+                                    if (country1.LightMissilesStation.IsHitStatus == false)
+                                    {
+
+                                        passedAirCrafts.Add(foeAirCraft);
+                                        break;
+                                    }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
                                     calculationManager.MissileT = lightMissilesF_O_EScene;
                                     calculationManager.AirCraftT = foeAirCraft;
+                                    destroyedAirCrafts.Add(foeAirCraft);
                                     calculationManager.methodsContainer();
                                     break;
                                 case 4:
@@ -260,22 +293,36 @@ namespace SE307_Project
                                         Console.WriteLine("Super Missiles are ready to be fired ");
                                         country1.SuperMissilesStation.fireTheMissiles(superMissilesUnkownScene,
                                             UnkownAirCraft);
-                                        if (country1.SuperMissilesStation.IsHitStatus == true)
+                                        if (country1.SuperMissilesStation.IsHitStatus == false)
+                                        {
+                                           
+                                            passedAirCrafts.Add(UnkownAirCraft);
+                                        }
+                                        else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
                                             calculationManager.MissileT = superMissilesUnkownScene;
                                             calculationManager.AirCraftT = UnkownAirCraft;
+                                            destroyedAirCrafts.Add(UnkownAirCraft);
                                             calculationManager.methodsContainer();
                                         }
 
                                         break;
                                     }
 
+                                    if (lightMissilesUnkownScene.IsHit == false)
+                                    {
+
+                                      Console.WriteLine("The AirCraft has escaped");
+                                        passedAirCrafts.Add(UnkownAirCraft);
+                                        break;
+                                    }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
                                     calculationManager.MissileT = lightMissilesUnkownScene;
                                     calculationManager.AirCraftT = UnkownAirCraft;
                                     calculationManager.methodsContainer();
-                                    break;
+                                    destroyedAirCrafts.Add(UnkownAirCraft);
+                                  break;
                                 case 5:
                                    Console.WriteLine("Going Back :)");
                                     break;
@@ -371,6 +418,40 @@ namespace SE307_Project
                                         Console.WriteLine("We Did not implement any unkown air crafts in the simulation");
 
                                     }
+                         Console.WriteLine("......\n......\n......");
+                         Console.WriteLine("Passed Enemy AirCrafts Demo");
+                        
+                         Counter = 1;
+                         if (passedAirCrafts.Count != 0)
+                         {
+                             Console.WriteLine("Number Of Passed Enemy AirCrafts: "+passedAirCrafts.Count+" AirCraft");
+                             foreach (var passed in passedAirCrafts)
+                             {
+                                 Console.WriteLine("The Data Of The "+Counter+" passed Enemy Air Crafts");
+                                 aircraftManager.ShowData(passed);
+                             }
+                         }
+                         else
+                         {
+                             Console.WriteLine("There is no any AirCraft that was passed");
+                         }
+                         Console.WriteLine("Destroyed Enemy AirCrafts Demo");
+                         Counter = 1;
+                         if (destroyedAirCrafts.Count != 0)
+                         {
+                             Console.WriteLine("Number Of Destroyed AirCrafts: "+destroyedAirCrafts.Count+" AirCraft");
+                             foreach (var destroyed in destroyedAirCrafts)
+                             {
+                                 Console.WriteLine("The Data Of The "+Counter+" destroyed Enemy Air Crafts");
+                                 aircraftManager.ShowData(destroyed);
+                             }
+                         }
+                         else
+                         {
+                             Console.WriteLine("There is no any AirCraft that was destroyed");
+                         }
+                         
+                         
                                     Console.WriteLine("......\n......\n......\n......\n......\n.....\n");
                                     Console.WriteLine("Bye Bye :)");
                                     return;

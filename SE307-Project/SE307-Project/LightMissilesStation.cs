@@ -17,7 +17,7 @@ namespace SE307_Project
             set => isHitStatus = value;
         }
 
-        public override void fireTheMissiles(Missile lightMissile, AirCraft airCraft)
+        public override bool fireTheMissiles(Missile lightMissile, AirCraft airCraft)
         {
             lightMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(lightMissile.MissilesStaus);
@@ -30,7 +30,7 @@ namespace SE307_Project
                 lightMissile.MissilesStaus = "Our Missile is landed is safely";
                 lightMissile.IsHit = false;
                 isHitStatus = false;
-                return;
+                return false;
             }
 
             if (lightMissile.checkTheHittingPercent() == false)
@@ -41,18 +41,18 @@ namespace SE307_Project
                 Console.WriteLine(lightMissile.MissilesStaus);
                 lightMissile.MissilesStaus = "The Missile is going to land on safe area";
                 Console.WriteLine(lightMissile.MissilesStaus);
-                Console.WriteLine(lightMissile);
                 lightMissile.MissilesStaus = "Our Missile is landed in safe location";
                 Console.WriteLine("The Aircraft is going to enter the high risk radius");
-                isHitStatus = false;
-                return;
+                IsHitStatus = false;
+                return false;
             }
 
             lightMissile.MissilesStaus =
                 "The Missile hit the AirCraft successfully and they are dropping in safe area";
             Console.WriteLine(lightMissile.MissilesStaus);
             lightMissile.IsHit = true;
-            isHitStatus = true;
+            IsHitStatus = true;
+            return true;
 
         }
 
