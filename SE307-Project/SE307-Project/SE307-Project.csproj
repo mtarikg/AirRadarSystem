@@ -44,10 +44,17 @@
     <Compile Include="Country.cs" />
     <Compile Include="F.O.E_AirCraft.cs" />
     <Compile Include="Friend_AirCraft.cs" />
+    <Compile Include="IManager.cs" />
+    <Compile Include="LightMissiles.cs" />
+    <Compile Include="LightMissilesStation.cs" />
+    <Compile Include="Manager.cs" />
     <Compile Include="Missile.cs" />
+    <Compile Include="MissilesStation.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Radar.cs" />
+    <Compile Include="SuperMissiles.cs" />
+    <Compile Include="SuperMissilesStation.cs" />
     <Compile Include="Unkown_AirCraft.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
