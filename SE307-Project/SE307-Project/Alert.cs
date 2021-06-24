@@ -1,24 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SE307_Project
 {
     public class Alert
     {
-        private List<string> alertMessages = new List<string>();
-
-        public List<string> AlertMessages
-        {
-            get => alertMessages;
-            set => alertMessages = value;
-        }
-
+      
         public Alert()
         {
         }
 
-        public void alertMessageDemo(int index)
+        public string lowRiskMessaage()
         {
-            
+            return ("strange Aircraft entered out borders");
+        }
+
+        public string highRiskMessage()
+        {
+            return "There is a chance to get attacked by the AirCraft please evacuate the area";
         }
         
     }

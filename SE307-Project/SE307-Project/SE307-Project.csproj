@@ -44,6 +44,7 @@
     <Compile Include="Alert.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="CountryManager.cs" />
+    <Compile Include="EnemyAirCraft.cs" />
     <Compile Include="F.O.E_AirCraft.cs" />
     <Compile Include="Friend_AirCraft.cs" />
     <Compile Include="IOperationService.cs" />

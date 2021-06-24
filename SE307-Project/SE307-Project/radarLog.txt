@@ -1,0 +1,3 @@
+Here is the information of the aircraft: 
+ Aircraft type: F-15
+Aircraft speed: 500

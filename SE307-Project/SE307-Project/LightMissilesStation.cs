@@ -9,7 +9,15 @@ namespace SE307_Project
         {
         }
 
-        public override void fireTheMissiles(Missile lightMissile, AirCraft airCraft)
+        private bool isHitStatus;
+
+        public bool IsHitStatus
+        {
+            get => isHitStatus;
+            set => isHitStatus = value;
+        }
+
+        public override bool fireTheMissiles(Missile lightMissile, AirCraft airCraft)
         {
             lightMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(lightMissile.MissilesStaus);
@@ -19,24 +27,37 @@ namespace SE307_Project
                     "The Aircrafts speed is bigger than our Missiles speed so it will not hit the aircraft";
                 Console.WriteLine(lightMissile.MissilesStaus);
                 lightMissile.MissilesStaus = "Our Missile is going to land on clear area";
-                Console.WriteLine(lightMissile);
                 lightMissile.MissilesStaus = "Our Missile is landed is safely";
                 lightMissile.IsHit = false;
-                return;
+                isHitStatus = false;
+                return false;
             }
 
             if (lightMissile.checkTheHittingPercent() == false)
             {
                 lightMissile.IsHit = false;
-                return;
+                lightMissile.MissilesStaus =
+                    "We got unlucky the shot did not hit the air craft due to miss-calculations";
+                Console.WriteLine(lightMissile.MissilesStaus);
+                lightMissile.MissilesStaus = "The Missile is going to land on safe area";
+                Console.WriteLine(lightMissile.MissilesStaus);
+                lightMissile.MissilesStaus = "Our Missile is landed in safe location";
+                Console.WriteLine("The Aircraft is going to enter the high risk radius");
+                IsHitStatus = false;
+                return false;
             }
 
             lightMissile.MissilesStaus =
                 "The Missile hit the AirCraft successfully and they are dropping in safe area";
             Console.WriteLine(lightMissile.MissilesStaus);
             lightMissile.IsHit = true;
-            
+            IsHitStatus = true;
+            return true;
 
+        }
+
+        public LightMissilesStation()
+        {
         }
     }
 }

@@ -9,7 +9,16 @@ namespace SE307_Project
         {
         }
 
-        public override void fireTheMissiles(Missile superMissile, AirCraft airCraft)
+        private bool isHitStatus;
+        
+
+        public bool IsHitStatus
+        {
+            get => isHitStatus;
+            set => isHitStatus = value;
+        }
+
+        public override bool fireTheMissiles(Missile superMissile, AirCraft airCraft)
         {
             superMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(superMissile.MissilesStaus);
@@ -19,20 +28,34 @@ namespace SE307_Project
                     "The Aircrafts speed is bigger than our Missiles speed so it will not hit the aircraft";
                 Console.WriteLine(superMissile.MissilesStaus);
                 superMissile.MissilesStaus = "Our Missile is going to land on clear area";
-                Console.WriteLine(superMissile);
                 superMissile.MissilesStaus = "Our Missile is landed is safely";
                 superMissile.IsHit = false;
+                IsHitStatus = false;
+                return false;
             }
             if (superMissile.checkTheHittingPercent() == false)
             {
                 superMissile.IsHit = false;
-                return;
+                superMissile.MissilesStaus =
+                    "We got unlucky the shot did not hit the air craft due to miss-calculations";
+                Console.WriteLine(superMissile.MissilesStaus);
+                superMissile.MissilesStaus = "The Missile is going to land on safe area";
+                Console.WriteLine(superMissile.MissilesStaus);
+                superMissile.MissilesStaus = "Our Missile is landed is safely";
+                IsHitStatus = false;
+                return false;
             }
 
             superMissile.MissilesStaus =
                 "The Missile hit the AirCraft successfully and they are dropping in safe area";
             Console.WriteLine(superMissile.MissilesStaus);
             superMissile.IsHit = true;
+            isHitStatus = true;
+            return true;
+        }
+
+        public SuperMissilesStation()
+        {
         }
     }
 }

@@ -10,15 +10,15 @@
         private double xValue;
         private double yValue;
 
-        protected AirCraft(int id, string type, string departure, string destination, double speed, double X, double Y)
+        protected AirCraft(int id = default, string type = null, string departure = null, string destination = null, double speed = default, double xValue = default, double yValue = default)
         {
             this.id = id;
             this.type = type;
             this.departure = departure;
             this.destination = destination;
             this.speed = speed;
-            this.xValue = X;
-            this.yValue = Y;
+            this.xValue = xValue;
+            this.yValue = yValue;
         }
 
         public int Id { get => id; set => id = value; }
