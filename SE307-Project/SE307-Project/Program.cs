@@ -75,7 +75,7 @@ namespace SE307_Project
 
             Country country2 = new Country(2, "Azerbaijan", "10.02 million", "86.600 km2");
             Country country3 = new Country(2, "Chile", "19 million", "756.950 km2");
-            CountryManager countryManager = new CountryManager(aircraftManager, missileManager);
+            CountryManager countryManager = new CountryManager();
 
             while (true)
             {

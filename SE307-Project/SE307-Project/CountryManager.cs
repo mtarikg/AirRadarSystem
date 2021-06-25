@@ -7,13 +7,8 @@ namespace SE307_Project
 {
     class CountryManager : IDataService<Country>, IOperationService<Country, Country>
     {
-        private AircraftManager aircraftManager;
-        private MissileManager missileManager;
-
-        public CountryManager(AircraftManager aircraftManager, MissileManager missileManager)
+        public CountryManager()
         {
-            this.aircraftManager = aircraftManager;
-            this.missileManager = missileManager;
         }
 
         public void Add(Country allyCountry, Country country)
@@ -49,6 +44,9 @@ namespace SE307_Project
 
         public string ShowData(Country country)
         {
+            AircraftManager aircraftManager = new AircraftManager();
+            MissileManager missileManager = new MissileManager();
+
             Console.WriteLine("Here is all information of the country: ");
             Console.WriteLine("Country name: " + country.CountryName);
             Console.WriteLine("Country population: " + country.Population);
