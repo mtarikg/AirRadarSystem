@@ -6,7 +6,7 @@ namespace SE307_Project
     {
         private int location;//location is the x axis 
         private string name;
-        
+
         // the approach was to contain any type of missiles without declaring it separately
         private List<Missile> missiles;
 
@@ -24,7 +24,7 @@ namespace SE307_Project
         public List<Missile> Missiles { get => missiles; set => missiles = value; }
 
         // missile is passed here as a parameter instead of using an instance created in the child classes.
-        public abstract bool fireTheMissiles(Missile missile, AirCraft airCraft);  
+        public abstract bool fireTheMissiles(Missile missile, AirCraft airCraft);
 
         protected MissilesStation(int location, string name, List<Missile> missiles)
         {

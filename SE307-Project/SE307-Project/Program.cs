@@ -57,12 +57,10 @@ namespace SE307_Project
             SuperMissiles superMissilesF_O_EScene = new SuperMissiles(8787, 300, "Super Rockets", 9);
             CalculationManager calculationManager = new CalculationManager();
             int numberOfAirCrafts = 0;
-            int numberOfEnemyAirCrafts=0;
+            int numberOfEnemyAirCrafts = 0;
             int numberOfFOEAirCrafts = 0;
             int numberOfUnkownAirCrafts = 0;
             int numberOfFriendAirCrafts = 0;
-            int counterDestroyedAirCrafts = 0;
-            int counterPassedAirCrafts = 0;
             List<AirCraft> enemyAirCrafts = new List<AirCraft>();
             List<AirCraft> friendAirCrafts = new List<AirCraft>();
             List<AirCraft> unkownAirCrafts = new List<AirCraft>();
@@ -74,6 +72,11 @@ namespace SE307_Project
                 new List<AirCraft> { },
                 new List<Missile> { }, new List<Country> { }, new List<Country> { }, new LightMissilesStation(),
                 new SuperMissilesStation());
+
+            Country country2 = new Country(2, "Azerbaijan", "10.02 million", "86.600 km2");
+            Country country3 = new Country(2, "Chile", "19 million", "756.950 km2");
+            CountryManager countryManager = new CountryManager(aircraftManager, missileManager);
+
             while (true)
             {
                 MainMenu();
@@ -87,20 +90,19 @@ namespace SE307_Project
                 switch (operationChoice)
                 {
                     case 1:
+                        countryManager.ShowData(country1);
+                        break;
                     case 2:
+                        break;
                     case 3:
+                        countryManager.ShowData(country2);
+                        countryManager.Add(country2, country1);
+                        countryManager.ShowData(country1);
+                        break;
                     case 4:
-                        aircraftManager.ShowData(aircraft2);
-                        aircraftManager.Add(aircraft2, country1);
-
-                        CountryManager countryManager = new CountryManager(aircraftManager, missileManager);
+                        countryManager.ShowData(country3);
+                        countryManager.Add(country3, country1);
                         countryManager.ShowData(country1);
-
-                        aircraftManager.Delete(aircraft2, country1);
-                        aircraftManager.Add(aircraft1, country1);
-                        countryManager.ShowData(country1);
-
-                        Console.ReadLine();
                         break;
                     case 5:
                         LogOptions();
@@ -158,8 +160,6 @@ namespace SE307_Project
                                     Console.WriteLine("It is found that is a Friend AirCraft");
                                     country1.AirStation.Radar.saveIntoLogs(friendAirCraft);
                                     numberOfAirCrafts++;
-                                    
-
                                     break;
                                 case 2:
                                     numberOfAirCrafts++;
@@ -196,13 +196,13 @@ namespace SE307_Project
                                             calculationManager.AirCraftT = enemyAirCraft;
                                             calculationManager.methodsContainer();
                                             destroyedAirCrafts.Add(enemyAirCraft);
-                                            
+
                                         }
 
                                         break;
                                     }
 
-                                    if (country1.LightMissilesStation.IsHitStatus==false)
+                                    if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
 
                                         passedAirCrafts.Add(enemyAirCraft);
@@ -295,7 +295,7 @@ namespace SE307_Project
                                             UnkownAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == false)
                                         {
-                                           
+
                                             passedAirCrafts.Add(UnkownAirCraft);
                                         }
                                         else
@@ -313,7 +313,7 @@ namespace SE307_Project
                                     if (lightMissilesUnkownScene.IsHit == false)
                                     {
 
-                                      Console.WriteLine("The AirCraft has escaped");
+                                        Console.WriteLine("The AirCraft has escaped");
                                         passedAirCrafts.Add(UnkownAirCraft);
                                         break;
                                     }
@@ -322,9 +322,9 @@ namespace SE307_Project
                                     calculationManager.AirCraftT = UnkownAirCraft;
                                     calculationManager.methodsContainer();
                                     destroyedAirCrafts.Add(UnkownAirCraft);
-                                  break;
+                                    break;
                                 case 5:
-                                   Console.WriteLine("Going Back :)");
+                                    Console.WriteLine("Going Back :)");
                                     break;
                             }
 
@@ -334,134 +334,129 @@ namespace SE307_Project
                         break;
 
                     case 7:
-                         Console.WriteLine("Data Demo");
-                                    Console.WriteLine("We Have " + numberOfAirCrafts + " AirCraft in this simulation");
-                                    Console.WriteLine("......\n......\n......");
-                                    Console.WriteLine("Friend AirCraft Data Demo");
-                                    int Counter = 1;
-                                    if (friendAirCrafts.Count != 0)
-                                    {
-                                        Console.WriteLine("Friend Air Crafts repeated: "+numberOfFriendAirCrafts);
-                                        foreach (var FAR in friendAirCrafts)
-                                        {
-                                            Console.WriteLine("Friend AirCraft Number "+Counter+" Data");
-                                            aircraftManager.ShowData(FAR);
-                                            Console.WriteLine("The Air Craft is moving from "+FAR.Departure+" to "+FAR.Destination);
-                                            Counter++;
+                        Console.WriteLine("Data Demo");
+                        Console.WriteLine("We Have " + numberOfAirCrafts + " AirCraft in this simulation");
+                        Console.WriteLine("......\n......\n......");
+                        Console.WriteLine("Friend AirCraft Data Demo");
+                        int Counter = 1;
+                        if (friendAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("Friend Air Crafts repeated: " + numberOfFriendAirCrafts);
+                            foreach (var FAR in friendAirCrafts)
+                            {
+                                Console.WriteLine("Friend AirCraft Number " + Counter + " Data");
+                                aircraftManager.ShowData(FAR);
+                                Console.WriteLine("The Air Craft is moving from " + FAR.Departure + " to " + FAR.Destination);
+                                Counter++;
 
-                                        }
-                                        
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("We Did not implement any friend air crafts in the simulation");
+                            }
 
-                                    }
-                                    Console.WriteLine("......\n......\n......");
-                                    Counter = 1;
-                                    if (enemyAirCrafts.Count != 0)
-                                    {
-                                        Console.WriteLine("Enemy Air Crafts repeated: "+numberOfEnemyAirCrafts);
-                                        foreach (var EAR in enemyAirCrafts)
-                                        {
-                                            Console.WriteLine("Enemy AirCraft Number "+Counter+" Data");
-                                            aircraftManager.ShowData(EAR);
-                                            Console.WriteLine("The Air Craft is moving from "+EAR.Departure+" to "+EAR.Destination);
-                                            Counter++;
+                        }
+                        else
+                        {
+                            Console.WriteLine("We Did not implement any friend air crafts in the simulation");
 
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("We Did not implement any enemies air crafts in the simulation");
+                        }
+                        Console.WriteLine("......\n......\n......");
+                        Counter = 1;
+                        if (enemyAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("Enemy Air Crafts repeated: " + numberOfEnemyAirCrafts);
+                            foreach (var EAR in enemyAirCrafts)
+                            {
+                                Console.WriteLine("Enemy AirCraft Number " + Counter + " Data");
+                                aircraftManager.ShowData(EAR);
+                                Console.WriteLine("The Air Craft is moving from " + EAR.Departure + " to " + EAR.Destination);
+                                Counter++;
 
-                                    }
-                                    Console.WriteLine("......\n......\n......");
-                                    Console.WriteLine("FOE AirCrafts Data Demo");
-                                    Counter = 1;
-                                    if (fOEAirCrafts.Count != 0)
-                                    {
-                                        Console.WriteLine("FOE Air Crafts repeated: "+numberOfFOEAirCrafts);
-                                        foreach (var FOE in fOEAirCrafts)
-                                        {
-                                            Console.WriteLine("FOE AirCraft Number "+Counter+" Data");
-                                            aircraftManager.ShowData(FOE);
-                                            Console.WriteLine("The Air Craft is moving from "+FOE.Departure+" to "+FOE.Destination);
-                                            Counter++;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("We Did not implement any enemies air crafts in the simulation");
 
-                                        }
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("We Did not implement any F.O.E air crafts in the simulation");
+                        }
+                        Console.WriteLine("......\n......\n......");
+                        Console.WriteLine("FOE AirCrafts Data Demo");
+                        Counter = 1;
+                        if (fOEAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("FOE Air Crafts repeated: " + numberOfFOEAirCrafts);
+                            foreach (var FOE in fOEAirCrafts)
+                            {
+                                Console.WriteLine("FOE AirCraft Number " + Counter + " Data");
+                                aircraftManager.ShowData(FOE);
+                                Console.WriteLine("The Air Craft is moving from " + FOE.Departure + " to " + FOE.Destination);
+                                Counter++;
 
-                                    }
-                                    Console.WriteLine("Unkown AirCrafts Data Demo");
-                                    Console.WriteLine("......\n......\n......");
-                                    Counter = 1;
-                                    if (unkownAirCrafts.Count != 0)
-                                    {
-                                        Console.WriteLine("Unkown AirCrafts Data Demo");
-                                        Console.WriteLine("Friend Unkown Crafts repeated: "+numberOfUnkownAirCrafts);
-                                        foreach (var UNK in friendAirCrafts)
-                                        {
-                                            Console.WriteLine("Unkown AirCraft Number "+Counter+" Data");
-                                            aircraftManager.ShowData(UNK);
-                                           
-                                            Counter++;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("We Did not implement any F.O.E air crafts in the simulation");
 
-                                        }
-                                        Console.WriteLine("Departure And Destination Countries are Unkown for the Unkown AirCrafts ");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("We Did not implement any unkown air crafts in the simulation");
+                        }
+                        Console.WriteLine("Unkown AirCrafts Data Demo");
+                        Console.WriteLine("......\n......\n......");
+                        Counter = 1;
+                        if (unkownAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("Unkown AirCrafts Data Demo");
+                            Console.WriteLine("Friend Unkown Crafts repeated: " + numberOfUnkownAirCrafts);
+                            foreach (var UNK in friendAirCrafts)
+                            {
+                                Console.WriteLine("Unkown AirCraft Number " + Counter + " Data");
+                                aircraftManager.ShowData(UNK);
 
-                                    }
-                         Console.WriteLine("......\n......\n......");
-                         Console.WriteLine("Passed Enemy AirCrafts Demo");
-                        
-                         Counter = 1;
-                         if (passedAirCrafts.Count != 0)
-                         {
-                             Console.WriteLine("Number Of Passed Enemy AirCrafts: "+passedAirCrafts.Count+" AirCraft");
-                             foreach (var passed in passedAirCrafts)
-                             {
-                                 Console.WriteLine("The Data Of The "+Counter+" passed Enemy Air Crafts");
-                                 aircraftManager.ShowData(passed);
-                             }
-                         }
-                         else
-                         {
-                             Console.WriteLine("There is no any AirCraft that was passed");
-                         }
-                         Console.WriteLine("Destroyed Enemy AirCrafts Demo");
-                         Counter = 1;
-                         if (destroyedAirCrafts.Count != 0)
-                         {
-                             Console.WriteLine("Number Of Destroyed AirCrafts: "+destroyedAirCrafts.Count+" AirCraft");
-                             foreach (var destroyed in destroyedAirCrafts)
-                             {
-                                 Console.WriteLine("The Data Of The "+Counter+" destroyed Enemy Air Crafts");
-                                 aircraftManager.ShowData(destroyed);
-                             }
-                         }
-                         else
-                         {
-                             Console.WriteLine("There is no any AirCraft that was destroyed");
-                         }
-                         
-                         
-                                    Console.WriteLine("......\n......\n......\n......\n......\n.....\n");
-                                    Console.WriteLine("Bye Bye :)");
-                                    return;
-                        
+                                Counter++;
+
+                            }
+                            Console.WriteLine("Departure And Destination Countries are Unkown for the Unkown AirCrafts ");
+                        }
+                        else
+                        {
+                            Console.WriteLine("We Did not implement any unkown air crafts in the simulation");
+
+                        }
+                        Console.WriteLine("......\n......\n......");
+                        Console.WriteLine("Passed Enemy AirCrafts Demo");
+
+                        Counter = 1;
+                        if (passedAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("Number Of Passed Enemy AirCrafts: " + passedAirCrafts.Count + " AirCraft");
+                            foreach (var passed in passedAirCrafts)
+                            {
+                                Console.WriteLine("The Data Of The " + Counter + " passed Enemy Air Crafts");
+                                aircraftManager.ShowData(passed);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no any AirCraft that was passed");
+                        }
+                        Console.WriteLine("Destroyed Enemy AirCrafts Demo");
+                        Counter = 1;
+                        if (destroyedAirCrafts.Count != 0)
+                        {
+                            Console.WriteLine("Number Of Destroyed AirCrafts: " + destroyedAirCrafts.Count + " AirCraft");
+                            foreach (var destroyed in destroyedAirCrafts)
+                            {
+                                Console.WriteLine("The Data Of The " + Counter + " destroyed Enemy Air Crafts");
+                                aircraftManager.ShowData(destroyed);
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("There is no any AirCraft that was destroyed");
+                        }
+
+
+                        Console.WriteLine("......\n......\n......\n......\n......\n.....\n");
+                        Console.WriteLine("Bye Bye :)");
+                        return;
+
                 }
-
-
-
-
-
             }
         }
     }

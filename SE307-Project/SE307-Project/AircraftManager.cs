@@ -40,7 +40,7 @@ namespace SE307_Project
 
         public string ShowData(AirCraft aircraft)
         {
-            
+
             Console.WriteLine("Here is the information of the aircraft: ");
             Console.WriteLine("Aircraft type: " + aircraft.Type);
             Console.WriteLine("Aircraft speed: " + aircraft.Speed);

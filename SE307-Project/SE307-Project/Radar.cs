@@ -10,7 +10,6 @@ namespace SE307_Project
         private double highRiskRadius, lowRiskRadius;
         private bool isThereRisk;
         private string file = @"E:\radarLog.txt";
-        private AircraftManager aircraftManager = new AircraftManager();
         List<string> lines = new List<string>();
 
         public double HighRiskRadius
@@ -35,17 +34,15 @@ namespace SE307_Project
         {
             if (logsChecker() == true)
             {
-               lines.Add(aircraftManager.ShowData(airCraft));
-               File.WriteAllLines(file,lines);
-               
+                AircraftManager aircraftManager = new AircraftManager();
+                lines.Add(aircraftManager.ShowData(airCraft));
+                File.WriteAllLines(file, lines);
             }
             else
             {
                 createNewLog();
                 saveIntoLogs(airCraft);
             }
-            
-           
         }
 
         public void ReadLogs()
@@ -69,12 +66,15 @@ namespace SE307_Project
         {
             if (logsChecker() == false)
             {
-                using (FileStream fs = File.Create(file)) ;
+                using (FileStream fs = File.Create(file))
+                {
+                    ;
+                }
             }
-            
+
             else
-            Console.WriteLine("This File is already exist");
-            }
+                Console.WriteLine("This File is already exist");
+        }
 
         public bool logsChecker()
         {
@@ -88,11 +88,11 @@ namespace SE307_Project
 
         public void deleteLog()
         {
-            if(File.Exists(file))
+            if (File.Exists(file))
                 File.Delete(file);
             else
-            Console.WriteLine("This File does not exist to be deleted");
-            }
+                Console.WriteLine("This File does not exist to be deleted");
+        }
 
         public bool isEnemyChecker(AirCraft airCraft, List<string> alliesCountries)
         {
@@ -107,7 +107,7 @@ namespace SE307_Project
             return true;
         }
 
-      
+
 
         public Radar()
         {

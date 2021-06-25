@@ -2,7 +2,7 @@
 
 namespace SE307_Project
 {
-    public class SuperMissiles:Missile
+    public class SuperMissiles : Missile
     {
         private int powerRank; //from 1-10 10 is the best
 
@@ -17,17 +17,17 @@ namespace SE307_Project
             this.powerRank = powerRank;
         }
 
-         public override bool checkTheHittingPercent()
+        public override bool checkTheHittingPercent()
         {
             Random rand = new Random();
-            int randomPercent = rand.Next(1,99);
+            int randomPercent = rand.Next(1, 99);
             if (randomPercent > 80)
             {
                 return false;
             }
 
             return true;
-        } 
-         
+        }
+
     }
-    }
+}

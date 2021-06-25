@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace SE307_Project
 {
-    public class SuperMissilesStation:MissilesStation
+    public class SuperMissilesStation : MissilesStation
     {
         public SuperMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
         {
         }
 
         private bool isHitStatus;
-        
+
 
         public bool IsHitStatus
         {

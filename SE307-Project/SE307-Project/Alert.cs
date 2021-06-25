@@ -5,7 +5,7 @@ namespace SE307_Project
 {
     public class Alert
     {
-      
+
         public Alert()
         {
         }
@@ -19,6 +19,6 @@ namespace SE307_Project
         {
             return "There is a chance to get attacked by the AirCraft please evacuate the area";
         }
-        
+
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SE307_Project
 {
-    public class LightMissilesStation:MissilesStation
+    public class LightMissilesStation : MissilesStation
     {
         public LightMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
         {

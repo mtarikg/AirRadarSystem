@@ -14,10 +14,18 @@ namespace SE307_Project
         private List<Missile> missiles; // a country can have multiple missiles.
         private List<Country> alliesCountries; // a country can have multiple allies.
         private List<Country> enemyCountries;  // a country can have multiple enemies.
-        private LightMissilesStation lightMissilesStation = new LightMissilesStation();
-        private SuperMissilesStation superMissilesStation = new SuperMissilesStation();
+        private LightMissilesStation lightMissilesStation;
+        private SuperMissilesStation superMissilesStation;
 
-        public Country(int id, string countryName, string population, string area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles, List<Country> alliesCountries, List<Country> enemyCountries,LightMissilesStation lightMissilesStation,SuperMissilesStation superMissilesStation)
+        public Country(int id, string countryName, string population, string area)
+        {
+            this.id = id;
+            this.countryName = countryName;
+            this.population = population;
+            this.area = area;
+        }
+
+        public Country(int id, string countryName, string population, string area, AirStation airStation, List<AirCraft> aircrafts, List<Missile> missiles, List<Country> alliesCountries, List<Country> enemyCountries, LightMissilesStation lightMissilesStation, SuperMissilesStation superMissilesStation)
         {
             this.id = id;
             this.countryName = countryName;

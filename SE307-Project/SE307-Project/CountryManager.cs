@@ -53,9 +53,17 @@ namespace SE307_Project
             Console.WriteLine("Country name: " + country.CountryName);
             Console.WriteLine("Country population: " + country.Population);
             Console.WriteLine("Country area: " + country.Area);
-            Console.WriteLine("Its air station: " + country.AirStation.Name);
+            if (country.AirStation != null)
+            {
+                Console.WriteLine("Its air station: " + country.AirStation.Name);
+            }
+            else
+            {
+                Console.WriteLine(country.CountryName + " has no air station at the moment.");
+            }
 
-            if (country.Aircrafts.Count != 0 && country.Aircrafts != null)
+
+            if (country.Aircrafts != null && country.Aircrafts.Count != 0)
             {
                 Console.WriteLine("All aircrafts that " + country.CountryName + " has: ");
                 foreach (var aircraft in country.Aircrafts)
@@ -68,7 +76,7 @@ namespace SE307_Project
                 Console.WriteLine(country.CountryName + " has no aircrafts at the moment.");
             }
 
-            if (country.Missiles.Count != 0 && country.Missiles != null)
+            if (country.Missiles != null && country.Missiles.Count != 0)
             {
                 Console.WriteLine("All missiles that " + country.CountryName + " has: ");
                 foreach (var missile in country.Missiles)
@@ -81,7 +89,7 @@ namespace SE307_Project
                 Console.WriteLine(country.CountryName + " has no missiles at the moment.");
             }
 
-            if (country.AlliesCountries.Count != 0 && country.AlliesCountries != null)
+            if (country.AlliesCountries != null && country.AlliesCountries.Count != 0)
             {
                 Console.WriteLine("All countries that are an ally for " + country.CountryName + " : ");
                 foreach (var allyCountry in country.AlliesCountries)
@@ -94,7 +102,7 @@ namespace SE307_Project
                 Console.WriteLine(country.CountryName + " has no ally country at the moment.");
             }
 
-            if (country.EnemyCountries.Count != 0 && country.EnemyCountries != null)
+            if (country.EnemyCountries != null && country.EnemyCountries.Count != 0)
             {
                 Console.WriteLine("All countries that are an enemy for " + country.CountryName + " : ");
                 foreach (var enemyCountry in country.EnemyCountries)

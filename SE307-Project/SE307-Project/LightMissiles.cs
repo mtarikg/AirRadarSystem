@@ -20,14 +20,14 @@ namespace SE307_Project
         public override bool checkTheHittingPercent()
         {
             Random rand = new Random();
-            int randomPercent = rand.Next(1,99);
+            int randomPercent = rand.Next(1, 99);
             if (randomPercent > 50)
             {
                 return false;
             }
 
             return true;
-            
+
         }
     }
 }

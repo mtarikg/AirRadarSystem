@@ -1,6 +1,6 @@
 ﻿namespace SE307_Project
 {
-    // declared abstract to prevent creating instances from this class, there might be missile types being added later.
+    // declared abstract to prevent creating instances from this class.
     public abstract class Missile
     {
         private int id;

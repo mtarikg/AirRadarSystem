@@ -4,6 +4,6 @@
     {
         void CalcDistance();
         void CalcTime();
-        
+
     }
 }
