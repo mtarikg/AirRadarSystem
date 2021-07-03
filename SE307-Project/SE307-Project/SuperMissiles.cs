@@ -6,10 +6,9 @@ namespace SE307_Project
     {
         public SuperMissiles(int id, double speed, string type, int powerRank) : base(id, type, speed, powerRank)
         {
-            
         }
 
-        public override bool checkTheHittingPercent()
+        public override bool CheckTheHittingPercent()
         {
             Random rand = new Random();
             int randomPercent = rand.Next(1, 99);
@@ -20,6 +19,5 @@ namespace SE307_Project
 
             return true;
         }
-
     }
 }

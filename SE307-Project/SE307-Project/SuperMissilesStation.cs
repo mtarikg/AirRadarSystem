@@ -5,12 +5,15 @@ namespace SE307_Project
 {
     public class SuperMissilesStation : MissilesStation
     {
-        public SuperMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
+        private bool isHitStatus;
+
+        public SuperMissilesStation()
         {
         }
 
-        private bool isHitStatus;
-
+        public SuperMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
+        {
+        }
 
         public bool IsHitStatus
         {
@@ -18,7 +21,7 @@ namespace SE307_Project
             set => isHitStatus = value;
         }
 
-        public override bool fireTheMissiles(Missile superMissile, AirCraft airCraft)
+        public override bool FireTheMissiles(Missile superMissile, AirCraft airCraft)
         {
             superMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(superMissile.MissilesStaus);
@@ -33,7 +36,7 @@ namespace SE307_Project
                 IsHitStatus = false;
                 return false;
             }
-            if (superMissile.checkTheHittingPercent() == false)
+            if (superMissile.CheckTheHittingPercent() == false)
             {
                 superMissile.IsHit = false;
                 superMissile.MissilesStaus =
@@ -52,10 +55,6 @@ namespace SE307_Project
             superMissile.IsHit = true;
             isHitStatus = true;
             return true;
-        }
-
-        public SuperMissilesStation()
-        {
         }
     }
 }

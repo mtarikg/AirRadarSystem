@@ -40,11 +40,7 @@ namespace SE307_Project
         {
 
             AirStation airStationTurkey = new AirStation("Air Station Turkey", new Radar(), new Alert());
-
-            AirCraft aircraft1 = new Friend_AirCraft(1, "F-16", "Turkey", "Denmark", 70.0, 35, 37);
-            AirCraft aircraft2 = new Friend_AirCraft(2, "F-16", "Turkey", "Estonia", 75.0, 35, 37);
             AircraftManager aircraftManager = new AircraftManager();
-            MissileManager missileManager = new MissileManager();
             AirCraft UnkownAirCraft = new Unkown_AirCraft(3, "F-15", null, null, 500, 13, 9); //towards Turkey
             AirCraft foeAirCraft = new F_O_E_AirCraft(4, "F-20", "China", "Syria", 400, 13, 9);
             AirCraft enemyAirCraft = new EnemyAirCraft(5, "SP-20", "U.S.A", "Turkey", 450, 13, 9);
@@ -120,13 +116,13 @@ namespace SE307_Project
                                 country1.AirStation.Radar.ReadLogs();
                                 break;
                             case 2:
-                                country1.AirStation.Radar.deleteLog();
+                                country1.AirStation.Radar.DeleteLog();
                                 Console.WriteLine("The Log is Deleted");
                                 break;
                             case 3:
-                                country1.AirStation.Radar.deleteLog();
+                                country1.AirStation.Radar.DeleteLog();
                                 Console.WriteLine("The log is deleted");
-                                country1.AirStation.Radar.createNewLog();
+                                country1.AirStation.Radar.CreateNewLog();
                                 Console.WriteLine("New log is created");
                                 break;
                             case 4:
@@ -158,7 +154,7 @@ namespace SE307_Project
                                     Console.WriteLine("Here is its Details: ");
                                     aircraftManager.ShowData(friendAirCraft);
                                     Console.WriteLine("It is found that is a Friend AirCraft");
-                                    country1.AirStation.Radar.saveIntoLogs(friendAirCraft);
+                                    country1.AirStation.Radar.SaveIntoLogs(friendAirCraft);
                                     numberOfAirCrafts++;
                                     break;
                                 case 2:
@@ -168,22 +164,22 @@ namespace SE307_Project
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
-                                    country1.AirStation.Radar.saveIntoLogs(enemyAirCraft);
-                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
+                                    country1.AirStation.Radar.SaveIntoLogs(enemyAirCraft);
+                                    Console.WriteLine(country1.AirStation.Alert.LowRiskMessaage());
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(enemyAirCraft);
                                     Console.WriteLine("It is shown that this is Aircraft for enemies");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesEnemyScene,
+                                    country1.LightMissilesStation.FireTheMissiles(lightMissilesEnemyScene,
                                         enemyAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
-                                        Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
+                                        Console.WriteLine(country1.AirStation.Alert.HighRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesEnemyScene,
+                                        country1.SuperMissilesStation.FireTheMissiles(superMissilesEnemyScene,
                                             enemyAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == false)
                                         {
@@ -192,9 +188,9 @@ namespace SE307_Project
                                         else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
-                                            calculationManager.MissileT = superMissilesEnemyScene;
-                                            calculationManager.AirCraftT = enemyAirCraft;
-                                            calculationManager.methodsContainer();
+                                            calculationManager.Missile = superMissilesEnemyScene;
+                                            calculationManager.AirCraft = enemyAirCraft;
+                                            calculationManager.MethodsContainer();
                                             destroyedAirCrafts.Add(enemyAirCraft);
 
                                         }
@@ -210,34 +206,34 @@ namespace SE307_Project
                                         break;
                                     }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
-                                    calculationManager.MissileT = lightMissilesEnemyScene;
-                                    calculationManager.AirCraftT = enemyAirCraft;
-                                    calculationManager.methodsContainer();
+                                    calculationManager.Missile = lightMissilesEnemyScene;
+                                    calculationManager.AirCraft = enemyAirCraft;
+                                    calculationManager.MethodsContainer();
                                     destroyedAirCrafts.Add(enemyAirCraft);
                                     break;
                                 case 3:
                                     numberOfAirCrafts++;
                                     numberOfFOEAirCrafts++;
                                     fOEAirCrafts.Add(foeAirCraft);
-                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
+                                    Console.WriteLine(country1.AirStation.Alert.LowRiskMessaage());
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
-                                    country1.AirStation.Radar.saveIntoLogs(foeAirCraft);
+                                    country1.AirStation.Radar.SaveIntoLogs(foeAirCraft);
 
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(foeAirCraft);
                                     Console.WriteLine("It is show that this is Aircraft for friend of an enemy");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesF_O_EScene, foeAirCraft);
+                                    country1.LightMissilesStation.FireTheMissiles(lightMissilesF_O_EScene, foeAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
-                                        Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
+                                        Console.WriteLine(country1.AirStation.Alert.HighRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesF_O_EScene,
+                                        country1.SuperMissilesStation.FireTheMissiles(superMissilesF_O_EScene,
                                             foeAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == false)
                                         {
@@ -247,9 +243,9 @@ namespace SE307_Project
                                         else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
-                                            calculationManager.MissileT = superMissilesF_O_EScene;
-                                            calculationManager.AirCraftT = foeAirCraft;
-                                            calculationManager.methodsContainer();
+                                            calculationManager.Missile = superMissilesF_O_EScene;
+                                            calculationManager.AirCraft = foeAirCraft;
+                                            calculationManager.MethodsContainer();
                                             destroyedAirCrafts.Add(foeAirCraft);
                                             passedAirCrafts.Add(foeAirCraft);
                                         }
@@ -264,34 +260,34 @@ namespace SE307_Project
                                         break;
                                     }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
-                                    calculationManager.MissileT = lightMissilesF_O_EScene;
-                                    calculationManager.AirCraftT = foeAirCraft;
+                                    calculationManager.Missile = lightMissilesF_O_EScene;
+                                    calculationManager.AirCraft = foeAirCraft;
                                     destroyedAirCrafts.Add(foeAirCraft);
-                                    calculationManager.methodsContainer();
+                                    calculationManager.MethodsContainer();
                                     break;
                                 case 4:
                                     numberOfAirCrafts++;
                                     numberOfUnkownAirCrafts++;
                                     unkownAirCrafts.Add(UnkownAirCraft);
-                                    Console.WriteLine(country1.AirStation.Alert.lowRiskMessaage());
+                                    Console.WriteLine(country1.AirStation.Alert.LowRiskMessaage());
                                     country1.AirStation.Radar.LowRiskRadius = country1.LightMissilesStation.Location;
                                     country1.AirStation.Radar.HighRiskRadius = country1.SuperMissilesStation.Location;
                                     Console.WriteLine("One AirCraft is Entering The Lands Of Turkey");
-                                    country1.AirStation.Radar.saveIntoLogs(UnkownAirCraft);
+                                    country1.AirStation.Radar.SaveIntoLogs(UnkownAirCraft);
                                     Console.WriteLine("Here is the Details: ");
                                     aircraftManager.ShowData(UnkownAirCraft);
                                     Console.WriteLine("It is show that this is Aircraft for enemies");
                                     Console.WriteLine("Defensive Operation will be considered");
                                     Console.WriteLine("The Light Missiles are ready to be fired");
-                                    country1.LightMissilesStation.fireTheMissiles(lightMissilesUnkownScene,
+                                    country1.LightMissilesStation.FireTheMissiles(lightMissilesUnkownScene,
                                         UnkownAirCraft);
                                     if (country1.LightMissilesStation.IsHitStatus == false)
                                     {
-                                        Console.WriteLine(country1.AirStation.Alert.highRiskMessage());
+                                        Console.WriteLine(country1.AirStation.Alert.HighRiskMessage());
                                         Console.WriteLine("So The Light Missiles failed ");
                                         Console.WriteLine("It is now the turn to fire the super missiles");
                                         Console.WriteLine("Super Missiles are ready to be fired ");
-                                        country1.SuperMissilesStation.fireTheMissiles(superMissilesUnkownScene,
+                                        country1.SuperMissilesStation.FireTheMissiles(superMissilesUnkownScene,
                                             UnkownAirCraft);
                                         if (country1.SuperMissilesStation.IsHitStatus == false)
                                         {
@@ -301,10 +297,10 @@ namespace SE307_Project
                                         else
                                         {
                                             calculationManager.MissilesStation = country1.SuperMissilesStation;
-                                            calculationManager.MissileT = superMissilesUnkownScene;
-                                            calculationManager.AirCraftT = UnkownAirCraft;
+                                            calculationManager.Missile = superMissilesUnkownScene;
+                                            calculationManager.AirCraft = UnkownAirCraft;
                                             destroyedAirCrafts.Add(UnkownAirCraft);
-                                            calculationManager.methodsContainer();
+                                            calculationManager.MethodsContainer();
                                         }
 
                                         break;
@@ -318,9 +314,9 @@ namespace SE307_Project
                                         break;
                                     }
                                     calculationManager.MissilesStation = country1.LightMissilesStation;
-                                    calculationManager.MissileT = lightMissilesUnkownScene;
-                                    calculationManager.AirCraftT = UnkownAirCraft;
-                                    calculationManager.methodsContainer();
+                                    calculationManager.Missile = lightMissilesUnkownScene;
+                                    calculationManager.AirCraft = UnkownAirCraft;
+                                    calculationManager.MethodsContainer();
                                     destroyedAirCrafts.Add(UnkownAirCraft);
                                     break;
                                 case 5:

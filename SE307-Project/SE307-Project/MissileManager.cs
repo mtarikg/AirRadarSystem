@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SE307_Project
 {
+    // This is a manager class in which operations are done on Missile objects.
     class MissileManager : IDataService<Missile>, IOperationService<Missile, Country>
     {
         public void Add(Missile missile, Country country)

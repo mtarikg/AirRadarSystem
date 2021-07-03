@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SE307_Project
 {
+    // This is a manager class in which operations are done on Aircraft objects.
     class AircraftManager : IDataService<AirCraft>, IOperationService<AirCraft, Country>
     {
         public void Add(AirCraft aircraft, Country country)
@@ -40,7 +41,6 @@ namespace SE307_Project
 
         public string ShowData(AirCraft aircraft)
         {
-
             Console.WriteLine("Here is the information of the aircraft: ");
             Console.WriteLine("Aircraft type: " + aircraft.Type);
             Console.WriteLine("Aircraft speed: " + aircraft.Speed);

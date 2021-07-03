@@ -5,11 +5,15 @@ namespace SE307_Project
 {
     public class LightMissilesStation : MissilesStation
     {
-        public LightMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
+        private bool isHitStatus;
+
+        public LightMissilesStation()
         {
         }
 
-        private bool isHitStatus;
+        public LightMissilesStation(int location, string name, List<Missile> missiles) : base(location, name, missiles)
+        {
+        }
 
         public bool IsHitStatus
         {
@@ -17,7 +21,7 @@ namespace SE307_Project
             set => isHitStatus = value;
         }
 
-        public override bool fireTheMissiles(Missile lightMissile, AirCraft airCraft)
+        public override bool FireTheMissiles(Missile lightMissile, AirCraft airCraft)
         {
             lightMissile.MissilesStaus = "The Missiles are fired up towards the AirCraft";
             Console.WriteLine(lightMissile.MissilesStaus);
@@ -33,7 +37,7 @@ namespace SE307_Project
                 return false;
             }
 
-            if (lightMissile.checkTheHittingPercent() == false)
+            if (lightMissile.CheckTheHittingPercent() == false)
             {
                 lightMissile.IsHit = false;
                 lightMissile.MissilesStaus =
@@ -53,11 +57,6 @@ namespace SE307_Project
             lightMissile.IsHit = true;
             IsHitStatus = true;
             return true;
-
-        }
-
-        public LightMissilesStation()
-        {
         }
     }
 }

@@ -5,17 +5,16 @@ namespace SE307_Project
 {
     public class Alert
     {
-
         public Alert()
         {
         }
 
-        public string lowRiskMessaage()
+        public string LowRiskMessaage()
         {
             return ("strange Aircraft entered out borders");
         }
 
-        public string highRiskMessage()
+        public string HighRiskMessage()
         {
             return "There is a chance to get attacked by the AirCraft please evacuate the area";
         }

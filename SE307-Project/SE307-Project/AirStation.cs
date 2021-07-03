@@ -3,9 +3,9 @@
     public class AirStation
     {
         private string name;
-        private Radar radar;
-        private Alert alert;// an air station must have a radar to observe the airline.
-        
+        private Radar radar; // an air station can have a radar to observe the airline.
+        private Alert alert;
+
         public Alert Alert
         {
             get => alert;
@@ -22,6 +22,6 @@
 
         public string Name { get => name; set => name = value; }
         public Radar Radar { get => radar; set => radar = value; }
-        
+
     }
 }

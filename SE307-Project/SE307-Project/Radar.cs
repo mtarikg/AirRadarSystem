@@ -12,6 +12,10 @@ namespace SE307_Project
         private string file = @"E:\radarLog.txt";
         List<string> lines = new List<string>();
 
+        public Radar()
+        {
+        }
+
         public double HighRiskRadius
         {
             get => highRiskRadius;
@@ -30,9 +34,9 @@ namespace SE307_Project
             this.lowRiskRadius = lowRiskRadius;
         }
 
-        public void saveIntoLogs(AirCraft airCraft)
+        public void SaveIntoLogs(AirCraft airCraft)
         {
-            if (logsChecker() == true)
+            if (LogsChecker() == true)
             {
                 AircraftManager aircraftManager = new AircraftManager();
                 lines.Add(aircraftManager.ShowData(airCraft));
@@ -40,15 +44,15 @@ namespace SE307_Project
             }
             else
             {
-                createNewLog();
-                saveIntoLogs(airCraft);
+                CreateNewLog();
+                SaveIntoLogs(airCraft);
             }
         }
 
         public void ReadLogs()
         {
-            logsChecker();
-            if (logsChecker() == true)
+            LogsChecker();
+            if (LogsChecker() == true)
             {
                 lines = File.ReadAllLines(file).ToList();
                 foreach (var VARIABLE in lines)
@@ -62,9 +66,9 @@ namespace SE307_Project
             }
         }
 
-        public void createNewLog()
+        public void CreateNewLog()
         {
-            if (logsChecker() == false)
+            if (LogsChecker() == false)
             {
                 using (FileStream fs = File.Create(file))
                 {
@@ -76,7 +80,7 @@ namespace SE307_Project
                 Console.WriteLine("This File is already exist");
         }
 
-        public bool logsChecker()
+        public bool LogsChecker()
         {
             if (File.Exists(file))
             {
@@ -86,7 +90,7 @@ namespace SE307_Project
             return false;
         }
 
-        public void deleteLog()
+        public void DeleteLog()
         {
             if (File.Exists(file))
                 File.Delete(file);
@@ -94,7 +98,7 @@ namespace SE307_Project
                 Console.WriteLine("This File does not exist to be deleted");
         }
 
-        public bool isEnemyChecker(AirCraft airCraft, List<string> alliesCountries)
+        public bool IsEnemyChecker(AirCraft airCraft, List<string> alliesCountries)
         {
             if (alliesCountries.Contains(airCraft.Departure))
             {
@@ -105,12 +109,6 @@ namespace SE307_Project
             Console.WriteLine("This AirCraft belongs to an enemy ");
             isThereRisk = true;
             return true;
-        }
-
-
-
-        public Radar()
-        {
         }
     }
 }

@@ -5,7 +5,5 @@
         public F_O_E_AirCraft(int id, string type, string departure, string destination, double speed, double xValue, double yValue) : base(id, type, departure, destination, speed, xValue, yValue)
         {
         }
-
-
     }
 }

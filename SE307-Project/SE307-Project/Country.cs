@@ -9,14 +9,17 @@ namespace SE307_Project
         private string countryName;
         private string population;
         private string area;
-        private AirStation airStation; // a country must have an air station.
-        private List<AirCraft> aircrafts; // a country can have multiple aircrafts.
-        private List<Missile> missiles; // a country can have multiple missiles.
-        private List<Country> alliesCountries; // a country can have multiple allies.
-        private List<Country> enemyCountries;  // a country can have multiple enemies.
+        // a country can have an air station, multiple aircrafts, multiple missiles, multiple allies and multiple enemies.
+        private AirStation airStation;
+        private List<AirCraft> aircrafts;
+        private List<Missile> missiles;
+        private List<Country> alliesCountries;
+        private List<Country> enemyCountries;
+        // a country can have two missiles stations; one is for light missiles and the other for super missiles.
         private LightMissilesStation lightMissilesStation;
         private SuperMissilesStation superMissilesStation;
 
+        // a country can exist with no information about aircrafts, missiles, allies or enemies.
         public Country(int id, string countryName, string population, string area)
         {
             this.id = id;

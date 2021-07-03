@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SE307_Project
 {
+    // This is a manager class in which operations are done on Country objects.
     class CountryManager : IDataService<Country>, IOperationService<Country, Country>
     {
         public CountryManager()
@@ -44,6 +45,7 @@ namespace SE307_Project
 
         public string ShowData(Country country)
         {
+            // To execute this method properly, we need two other manager classes.
             AircraftManager aircraftManager = new AircraftManager();
             MissileManager missileManager = new MissileManager();
 
